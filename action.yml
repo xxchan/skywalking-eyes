@@ -44,6 +44,9 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: aa
+      shell: bash
+      run: echo "Hello, world!" && echo ${{ github.action_path }}
     - name: a
       shell: bash
       run: cat ${{ github.action_path }}/go.sum
