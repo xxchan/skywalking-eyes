@@ -44,9 +44,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: aa
-      shell: bash
-      run: echo "Hello, world!" && echo ${{ github.action_path }}
+    - uses: actions/checkout@v2
     - shell: bash
       run: ls -l ${{ github.action_path }}
     - name: a
