@@ -44,6 +44,8 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - shell: bash
+      run: cat ${{ github.action_path }}/go.sum
     - name: Set up Go 1.18
       uses: actions/setup-go@v4
       with:
