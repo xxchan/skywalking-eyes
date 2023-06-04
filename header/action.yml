@@ -44,14 +44,22 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: aa
+      shell: bash
+      run: echo "Hello, world!" && echo ${{ github.action_path }}
+    - name: a
+      shell: bash
+      run: cat ${{ github.action_path }}/go.sum
     - name: Set up Go 1.18
       uses: actions/setup-go@v4
       with:
         go-version: 1.18
         cache-dependency-path: ${{ github.action_path }}/go.sum
-    - shell: bash
-      run: make -C $GITHUB_ACTION_PATH/.. install
-    - shell: bash
+    - name: b
+      shell: bash
+      run: make -C $GITHUB_ACTION_PATH install
+    - name: run
+      shell: bash
       env:
         GITHUB_TOKEN: ${{ inputs.token }}
       run: license-eye -v ${{ inputs.log }} -c ${{ inputs.config }} header ${{ inputs.mode }}
